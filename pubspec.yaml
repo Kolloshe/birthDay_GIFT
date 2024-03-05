@@ -90,7 +90,7 @@ flutter:
   fonts:
     - family: GreatVibes
       fonts:
-        - asset: asset/font/GreatVibes-Regular.ttf
+        - asset: asset/font/CormorantGaramond-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

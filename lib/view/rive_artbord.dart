@@ -58,7 +58,7 @@ class RiveAvatar {
   void move(Offset pointer) => _controller.pointerMoveFromOffset(pointer);
 
   /// Fires "exit" animation.
-  void onExit() => _hoverInput?.fire();
+  // void onExit() => _hoverInput?.fire();
 
   void onTapAir() {
     _controller.setInputValue(isPressedID, false);
@@ -75,6 +75,7 @@ class RiveAvatar {
     if (isHovered) {
       _controller.setInputValue(isBlowingID, false);
       _controller.setInputValue(isPressedID, true);
+      _controller.setInputValue(isHoverID, true);
 
       // Fire background animation.
       assetsAudioPlayer.stop();
@@ -82,7 +83,6 @@ class RiveAvatar {
       if (result.value == false) {
         assetsAudioPlayer.open(Audio("asset/audio/happy-birthday-to-you-piano-version-13976.mp3"),
             loopMode: LoopMode.single);
-        move(const Offset(1663.4, 742.4));
       }
 
       return true;
@@ -98,6 +98,20 @@ class RiveAvatar {
     move(offset); // Move head/eyes to the tap position.
     // Future.delayed(const Duration(seconds: 1), onExit);
     // Exit after one sec.
+    final isHovered = _controller.getInputValue(isHoverID);
+
+    if (isHovered) {
+      _controller.setInputValue(isBlowingID, false);
+      _controller.setInputValue(isPressedID, true);
+
+      // Fire background animation.
+      assetsAudioPlayer.stop();
+      final result = assetsAudioPlayer.isPlaying;
+      if (result.value == false) {
+        assetsAudioPlayer.open(Audio("asset/audio/happy-birthday-to-you-piano-version-13976.mp3"),
+            loopMode: LoopMode.single);
+      }
+    }
   }
 
   void blowingTheCandle() {

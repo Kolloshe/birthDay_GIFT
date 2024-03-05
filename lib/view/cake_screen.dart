@@ -36,7 +36,7 @@ class _CakeScreenState extends State<CakeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(237, 244, 139, 167),
+      backgroundColor: Color.fromARGB(249, 250, 139, 169),
       body: Stack(
         children: [
           Positioned(
@@ -55,11 +55,14 @@ class _CakeScreenState extends State<CakeScreen> {
                   }
                 },
                 onPanUpdate: (details) {
+                  print('onPanUpdate');
                   widget._avatar.recognizeUserSwap(details.localPosition);
                 },
                 child: MouseRegion(
-                  onExit: (_) => widget._avatar.onExit(),
-                  onHover: (event) => widget._avatar.move(event.localPosition),
+                  // onExit: (_) => widget._avatar.onExit(),
+                  onHover: (event) {
+                    widget._avatar.move(event.localPosition);
+                  },
                   // The useArtboardSize is important for accurate pointer position.
                   child: RepaintBoundary(
                     child: Rive(
@@ -82,7 +85,7 @@ class _CakeScreenState extends State<CakeScreen> {
             child: Text(
               "$mainMessage $personName",
               style:
-                  const TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
+                  const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ).animate(target: animationTrigger).fade(),
           Positioned(
@@ -93,7 +96,7 @@ class _CakeScreenState extends State<CakeScreen> {
               subMessage,
               maxLines: 2,
               style:
-                  const TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
+                  const TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold),
             ),
           ).animate(target: animationTrigger).fade(),
 
